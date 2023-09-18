@@ -21,9 +21,9 @@ class HW1:
         FILL IN AGENTS HERE
         Return all three agents like: return(reflex_agent, model_agent, random_agent)
         '''
-        agent_1 = None #reflex agent
-        agent_2 = None #model based agent
-        agent_3 = None #random agent
+        agent_1 = ReflexVacuumAgent() #reflex agent
+        agent_2 = ModelBasedVacuumAgent() #model based agent
+        agent_3 = RandomVacuumAgent() #random agent
         return (agent_1, agent_2, agent_3)
     
     def get_env(self):
@@ -31,7 +31,7 @@ class HW1:
         FILL IN ENVIRONMENT HERE
         Return the environment like: return environment
         '''
-        env = None #trivial vac environment
+        env = TrivialVacuumEnvironment() #trivial vac environment
         return env
 
     def run(self, agent, env, times):
@@ -45,7 +45,9 @@ class HW1:
         #step 2: run the env for the given times
         #step 3: set to status variable
         #step 4: return the status of the env after the run
-        status = None
+        env.add_thing(agent)
+        env.run(times)
+        status = env.status
         return status
 
 
@@ -53,19 +55,22 @@ class HW1:
         '''
         Call your run function with the reflex agent and the trivial vac environment and return the result 
         '''
-        return None
+        result = self.run(self.reflex_agent, self.environment, 20)
+        return result
 
     def problem_2(self):
         '''
         Call your run function with the model based agent and the trivial vac environment and return the result
         '''
-        return None 
+        result = self.run(self.model_agent, self.environment, 20)
+        return result 
 
     def problem_3(self):
         '''
         Call your run function with the random agent and the trivial vac environment and return the result
         '''
-        return None 
+        result = self.run(self.random_agent, self.environment, 20)
+        return result 
 
     def problem_4(self):
         '''
