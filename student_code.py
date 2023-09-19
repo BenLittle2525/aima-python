@@ -55,6 +55,7 @@ class HW1:
         '''
         Call your run function with the reflex agent and the trivial vac environment and return the result 
         '''
+        TraceAgent(self.reflex_agent)
         result = self.run(self.reflex_agent, self.environment, 20)
         return result
 
@@ -62,6 +63,7 @@ class HW1:
         '''
         Call your run function with the model based agent and the trivial vac environment and return the result
         '''
+        TraceAgent(self.model_agent)
         result = self.run(self.model_agent, self.environment, 20)
         return result 
 
@@ -69,6 +71,7 @@ class HW1:
         '''
         Call your run function with the random agent and the trivial vac environment and return the result
         '''
+        TraceAgent(self.random_agent)
         result = self.run(self.random_agent, self.environment, 20)
         return result 
 
@@ -78,7 +81,13 @@ class HW1:
         You will have to pass the agents and the environment to the comparison function, 
         this will require reviewing the documentation because the process is a little different.
         '''
-        return None
+        env = TrivialVacuumEnvironment
+        agents = [ModelBasedVacuumAgent, ReflexVacuumAgent, RandomVacuumAgent]
+        results = compare_agents(env, agents, 10, 20)
+        modelPerformance = results[0][1]
+        reflexPerformance = results[1][1]
+        randomPerformance = results[2][1]
+        return (modelPerformance, reflexPerformance, randomPerformance)
 
 
 def main():
